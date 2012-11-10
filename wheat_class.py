@@ -10,6 +10,21 @@ class Wheat(Crop):
 		super().__init__(2,5,4)
 		self._type = "Wheat" #override the parent class attribute with new value
 
+	def grow(self,light,water):
+		if light >= self._light_need and water >= self._water_need:
+			if self._status == "Seedling":
+				self._growth += self._growth_rate * 1.5
+			elif self._status == "Young":
+				self._growth += self._growth_rate *1.25
+			elif self._status == "Old":
+				self._growth += self._growth_rate / 2
+			else:
+				self._growth += self._growth_rate
+		#increment days growing
+		self._days_growing += 1
+		#update the status
+		self._update_status()
+
 
 def main():
 	#create a new wheat crop
