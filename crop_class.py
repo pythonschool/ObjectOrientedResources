@@ -81,16 +81,55 @@ def auto_grow(self,days):
 		water = random.randint(1,10)
 		self.grow(light,water)
 
+def displayMenu():
+    print('1. Grow manually over 1 day')
+    print('2. Grow automatically over 30 days')
+    print('3. Report status')
+    print('0. Exit test program')
+    print()
+    print('Please select an option from the above menu')
+
+def getMenuChoice():
+    optionValid = False
+    while optionValid == False:
+        try:
+            choice = int(input('Option Selected: '))
+            if (choice >= 0) and (choice <= 4):
+                optionValid = True
+            else:
+                print('Please enter a valid option')
+        except ValueError:
+            print('Please enter a valid option')
+    return choice
+
+def manage_crop(self):
+	print('This is crop management program')
+	print()
+	noexit = True
+	myCrop = None
+	while noexit:
+		displayMenu()
+		option = getMenuChoice()
+		print()
+		if option == 1:
+			manual_grow(self)
+			print()
+		elif option == 2:
+			auto_grow(self,30)
+			print()
+		elif option == 3:
+			print(self.report())
+			print()
+		elif option == 0:
+			noexit = False
+			print()
+	print('Thank you for using the crop management program')
+
 def main():
 	#instaniate the class
 	new_crop = Crop(1,4,3)
 	#test to see whether it works or not
-	print(new_crop.needs())
-	print(new_crop.report())
-	manual_grow(new_crop)
-	print(new_crop.report())
-	auto_grow(new_crop,30)
-	print(new_crop.report())
+	manage_crop(new_crop)
 
 if __name__ == '__main__':
 	main()
