@@ -16,6 +16,17 @@ class Crop:
 		#the above attributes are prefixed with an underscore to indicate that they should not be
 		#accessed directly from outwith the class
 
+	#method to indicate the needs of the crop
+	def needs(self):
+		#return a dictionary containing the light and water needs
+		return {'light need':self._light_need,'water need':self._water_need}
+
+	#method to report the provide information about the current state of the crop
+	def report(self):
+		#return a dictionary containing type,status,growth and days growing
+		return {'type':self._type,'status':self._status,'growth':self._growth,'days growing':self._days_growing}
+
+
 
 def main():
 	#instaniate the class
