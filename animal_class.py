@@ -85,7 +85,9 @@ def main():
 	new_animal = Animal(1,4,5,"Sally")
 	#test to see whether it works or not
 	print(new_animal.report())
-	new_animal.grow(4,5)
+	manual_grow(new_animal)
+	print(new_animal.report())
+	auto_grow(new_animal,15)
 	print(new_animal.report())
 
 if __name__ == '__main__':
