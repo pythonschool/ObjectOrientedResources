@@ -15,3 +15,13 @@ class Animal:
 
 		#the above attributes are prefixed with an underscore to indicate that they should not be
 		#accessed directly from outwith the class
+
+	#method to indicate the needs of the animal
+	def needs(self):
+		#return a dictionary containing the food and water needs
+		return {'food need':self._food_need,'water need':self._water_need}
+
+	#method to provide information about the current state of the animal
+	def report(self):
+		#return a dictionary containing type,status, weight and days growing
+		return {'type':self._type,'status':self._status,'weight':self._weight,'days growing':self._days_growing}
