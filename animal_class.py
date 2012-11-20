@@ -45,3 +45,14 @@ class Animal:
 		self._days_growing += 1
 		#update the status
 		self._update_status()
+
+def main():
+	#instaniate the class
+	new_animal = Animal(1,4,5,"Sally")
+	#test to see whether it works or not
+	print(new_animal.report())
+	new_animal.grow(4,5)
+	print(new_animal.report())
+
+if __name__ == '__main__':
+	main()
