@@ -1,3 +1,5 @@
+import random
+
 class Animal:
 	"""a generic animal"""
 
@@ -24,8 +26,8 @@ class Animal:
 
 	#method to provide information about the current state of the animal
 	def report(self):
-		#return a dictionary containing type,status, weight and days growing
-		return {'type':self._type,'status':self._status,'weight':self._weight,'days growing':self._days_growing}
+		#return a dictionary containing name,type,status, weight and days growing
+		return {'name':self.name,'type':self._type,'status':self._status,'weight':self._weight,'days growing':self._days_growing}
 
 	#the underscore indicates that this method should not be called from outwith the class
 	def _update_status(self):
@@ -45,6 +47,38 @@ class Animal:
 		self._days_growing += 1
 		#update the status
 		self._update_status()
+
+def manual_grow(self):
+	#get the food and water values from the user
+	valid = False
+	while not valid:
+		try:
+			food = int(input("Please enter a food value (1-10): "))
+			if 1 <= food <= 10:
+				valid = True
+			else:
+				print("Value entered not valid - please enter a value between 1 and 10")
+		except ValueError:
+			print("Value entered not valid - please enter a value between 1 and 10")
+	valid = False
+	while not valid:
+		try:
+			water = int(input("Please enter a water value (1-10): "))
+			if 1 <= water <= 10:
+				valid = True
+			else:
+				print("Value entered not valid - please enter a value between 1 and 10")
+		except ValueError:
+			print("Value entered not valid - please enter a value between 1 and 10")
+	#grow the crop
+	self.grow(food,water)
+
+def auto_grow(self,days):
+	#grow the crop automatically over 30 days
+	for day in range(days):
+		food = random.randint(1,10)
+		water = random.randint(1,10)
+		self.grow(food,water)
 
 def main():
 	#instaniate the class
