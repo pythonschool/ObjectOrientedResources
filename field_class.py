@@ -27,6 +27,9 @@ class Field:
 		else:
 			return False
 
+	def harvest_crop(self,position):
+		return self._crops.pop(position)
+
 
 
 def main():
@@ -37,6 +40,8 @@ def main():
 	new_field.add_animal(Sheep("Shaun"))
 	print(new_field._crops)
 	print(new_field._animals)
+	print(new_field.harvest_crop(0))
+	print(new_field._crops)
 
 if __name__ == '__main__':
 	main()
