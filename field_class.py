@@ -44,7 +44,31 @@ def display_animals(animal_list):
 	for pos in range(len(animal_list)):
 		print("{0:>4}. {1}.".format(pos+1,animal_list[pos].report()))
 
+def select_crop(length_list):
+	selected = 0
+	while selected not in range(1,length_list+1):
+		selected = int(input("Please select a crop: "))
+		if selected not in range(1,length_list+1):
+			print("Please select a valid option")
+	return selected - 1
 
+def select_animal(length_list):
+	selected = 0
+	while selected not in range(1,length_list+1):
+		selected = int(input("Please select an animal: "))
+		if selected not in range(1,length_list+1):
+			print("Please select a valid option")
+	return selected - 1
+
+def harvest_crop_from_field(new_field):
+	display_crops(new_field._crops)
+	selected_crop = select_crop(len(new_field._crops))
+	return new_field.harvest_crop(selected_crop)
+
+def remove_animal_from_field(new_field):
+	display_animals(new_field._animals)
+	selected_animal = select_animal(len(new_field._animals))
+	return new_field.remove_animal(selected_animal)
 
 def main():
 	#testing
@@ -52,8 +76,9 @@ def main():
 	new_field.plant_crop(Wheat())
 	new_field.plant_crop(Potato())
 	new_field.add_animal(Sheep("Shaun"))
-	display_crops(new_field._crops)
-	display_animals(new_field._animals)
+	print(new_field._crops)
+	print(harvest_crop_from_field(new_field))
+	print(new_field._crops)
 
 if __name__ == '__main__':
 	main()
