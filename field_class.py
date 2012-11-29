@@ -30,6 +30,20 @@ class Field:
 	def harvest_crop(self,position):
 		return self._crops.pop(position)
 
+	def remove_animal(self,position):
+		return self._animals.pop(position)
+
+def display_crops(crop_list):
+	print()
+	print("The following crops are in this field:")
+	for pos in range(len(crop_list)):
+		print("{0:>4}. {1}.".format(pos+1,crop_list[pos].report()))
+
+def display_animals(animal_list):
+	print("The following animals are in this field:")
+	for pos in range(len(animal_list)):
+		print("{0:>4}. {1}.".format(pos+1,animal_list[pos].report()))
+
 
 
 def main():
@@ -38,10 +52,8 @@ def main():
 	new_field.plant_crop(Wheat())
 	new_field.plant_crop(Potato())
 	new_field.add_animal(Sheep("Shaun"))
-	print(new_field._crops)
-	print(new_field._animals)
-	print(new_field.harvest_crop(0))
-	print(new_field._crops)
+	display_crops(new_field._crops)
+	display_animals(new_field._animals)
 
 if __name__ == '__main__':
 	main()
