@@ -1,12 +1,13 @@
 from potato_class import *
 from wheat_class import *
-from animal_class import *
+from cow_class import *
+from sheep_class import *
 
 class Field:
 	"""Simulate a field that can contain animals and crops"""
 
 	#constructor
-	def __init__(self,max_animals,max_crops):
+	def __init__(self,max_crops,max_animals):
 		self._crops = []
 		self._animals = []
 		self._max_animals = max_animals
@@ -27,8 +28,15 @@ class Field:
 			return False
 
 
+
 def main():
-	pass
+	#testing
+	new_field = Field(2,5)
+	new_field.plant_crop(Wheat())
+	new_field.plant_crop(Potato())
+	new_field.add_animal(Sheep("Shaun"))
+	print(new_field._crops)
+	print(new_field._animals)
 
 if __name__ == '__main__':
 	main()
