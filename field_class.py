@@ -12,6 +12,20 @@ class Field:
 		self._max_animals = max_animals
 		self._max_crops = max_crops
 
+	def plant_crop(self,crop):
+		if len(self._crops) < self._max_crops:
+			self._crops.append(crop)
+			return True
+		else:
+			return False
+
+	def add_animal(self,animal):
+		if len(self._animals) < self._max_animals:
+			self._animals.append(animal)
+			return True
+		else:
+			return False
+
 
 def main():
 	pass
