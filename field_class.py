@@ -33,6 +33,29 @@ class Field:
 	def remove_animal(self,position):
 		return self._animals.pop(position)
 
+	def report_contents(self):
+		crop_report = []
+		animal_report = []
+		for crop in self._crops:
+			crop_report.append(crop.report())
+		for animal in self._animals:
+			animal_report.append(animal.report())
+		return {"crops": crop_report,"animals":animal_report}
+
+	def report_field_needs(self):
+		food = 0
+		light = 0
+		water = 0
+		for crop in self._crops:
+			needs = crop.needs()
+			light += needs["light need"]
+			water += needs["water need"]
+		for animal in self._animals:
+			needs = animal.needs()
+			food += needs["food need"]
+			water += needs["water need"]
+		return {"food":food,"light":light,"water":water}
+
 def display_crops(crop_list):
 	print()
 	print("The following crops are in this field:")
@@ -76,9 +99,10 @@ def main():
 	new_field.plant_crop(Wheat())
 	new_field.plant_crop(Potato())
 	new_field.add_animal(Sheep("Shaun"))
-	print(new_field._crops)
-	print(harvest_crop_from_field(new_field))
-	print(new_field._crops)
+	report = new_field.report_contents()
+	print(report["crops"])
+	report = new_field.report_field_needs()
+	print(report)
 
 if __name__ == '__main__':
 	main()
