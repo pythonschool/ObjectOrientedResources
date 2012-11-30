@@ -3,6 +3,8 @@ from wheat_class import *
 from cow_class import *
 from sheep_class import *
 
+import random
+
 class Field:
 	"""Simulate a field that can contain animals and crops"""
 
@@ -84,7 +86,6 @@ class Field:
 				if food >= needs["food need"]:
 					#remove food for this animal from total
 					food -= needs["food need"]
-					print(food)
 					feed = needs["food need"]
 					#see if there is any additional food to give
 					if additional_food > 0:
@@ -94,6 +95,49 @@ class Field:
 						feed += 1
 					#grow the animal
 					animal.grow(feed,water)
+
+def manual_grow(self):
+	#get the light, water and food values from the user
+	valid = False
+	while not valid:
+		try:
+			light = int(input("Please enter a light value (1-10): "))
+			if 1 <= light <= 10:
+				valid = True
+			else:
+				print("Value entered not valid - please enter a value between 1 and 10")
+		except ValueError:
+			print("Value entered not valid - please enter a value between 1 and 10")
+	valid = False
+	while not valid:
+		try:
+			water = int(input("Please enter a water value (1-10): "))
+			if 1 <= water <= 10:
+				valid = True
+			else:
+				print("Value entered not valid - please enter a value between 1 and 10")
+		except ValueError:
+			print("Value entered not valid - please enter a value between 1 and 10")
+	valid = False
+	while not valid:
+		try:
+			food = int(input("Please enter a food value (1-100): "))
+			if 1 <= food <= 100:
+				valid = True
+			else:
+				print("Value entered not valid - please enter a value between 1 and 100")
+		except ValueError:
+			print("Value entered not valid - please enter a value between 1 and 100")
+	#grow the field
+	self.grow(light,food,water)
+
+def auto_grow(self,days):
+	#grow the field automatically over x days
+	for day in range(days):
+		light = random.randint(1,10)
+		water = random.randint(1,10)
+		food = random.randint(1,100)
+		self.grow(light,food,water)
 
 def display_crops(crop_list):
 	print()
@@ -135,11 +179,13 @@ def remove_animal_from_field(new_field):
 def main():
 	#testing
 	new_field = Field(2,5)
+	new_field.plant_crop(Wheat())
+	new_field.plant_crop(Potato())
 	new_field.add_animal(Cow("Bob"))
 	new_field.add_animal(Sheep("Sally"))
 	print(new_field.report_contents())
 	print(new_field.report_needs())
-	new_field.grow(0,10,4)
+	auto_grow(new_field,10)
 	print(new_field.report_contents())
 
 if __name__ == '__main__':
