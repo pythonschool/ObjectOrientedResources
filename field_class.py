@@ -42,19 +42,24 @@ class Field:
 			animal_report.append(animal.report())
 		return {"crops": crop_report,"animals":animal_report}
 
-	def report_field_needs(self):
+	def report_needs(self):
 		food = 0
 		light = 0
 		water = 0
 		for crop in self._crops:
 			needs = crop.needs()
-			light += needs["light need"]
-			water += needs["water need"]
+			if needs["light need"] > light:
+				light = needs["light need"]
+			if needs["water need"] > water:
+				water = needs["water need"]
 		for animal in self._animals:
 			needs = animal.needs()
 			food += needs["food need"]
-			water += needs["water need"]
+			if needs["water need"] > water:
+				water = needs["water need"]
 		return {"food":food,"light":light,"water":water}
+
+	
 
 def display_crops(crop_list):
 	print()
