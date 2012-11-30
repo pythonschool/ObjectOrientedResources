@@ -81,7 +81,7 @@ def auto_grow(self,days):
 		water = random.randint(1,10)
 		self.grow(light,water)
 
-def displayMenu():
+def display_menu():
     print('1. Grow manually over 1 day')
     print('2. Grow automatically over 30 days')
     print('3. Report status')
@@ -89,7 +89,7 @@ def displayMenu():
     print()
     print('Please select an option from the above menu')
 
-def getMenuChoice():
+def get_menu_choice():
     optionValid = False
     while optionValid == False:
         try:
@@ -105,11 +105,10 @@ def getMenuChoice():
 def manage_crop(self):
 	print('This is crop management program')
 	print()
-	noexit = True
-	myCrop = None
-	while noexit:
-		displayMenu()
-		option = getMenuChoice()
+	exit = Falst
+	while not exit:
+		display_menu()
+		option = get_menu_choice()
 		print()
 		if option == 1:
 			manual_grow(self)
@@ -121,7 +120,7 @@ def manage_crop(self):
 			print(self.report())
 			print()
 		elif option == 0:
-			noexit = False
+			exit = True
 			print()
 	print('Thank you for using the crop management program')
 
