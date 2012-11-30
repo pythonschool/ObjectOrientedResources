@@ -59,7 +59,41 @@ class Field:
 				water = needs["water need"]
 		return {"food":food,"light":light,"water":water}
 
-	
+	def grow(self,light,food,water):
+		#grow the crops (light and water are available to all crops in same amounts)
+		if len(self._crops) > 0:
+			for crop in self._crops:
+				crop.grow(light,water)
+		if len(self._animals) > 0:
+			#grow the animals (water available to all animals in same amounts but food is a total that must be shared)
+			food_required = 0
+			#get a total of the food needed by the animals in the field
+			for animal in self._animals:
+				needs = animal.needs()
+				food_required += needs["food need"]
+			#if we have more food available than is required work out the additional available food
+			if food > food_required:
+				additional_food = food - food_required
+				food = food_required
+			else:
+				additional_food = 0
+			#grow each animal
+			for animal in self._animals:
+				#get the animals food needs
+				needs = animal.needs()
+				if food >= needs["food need"]:
+					#remove food for this animal from total
+					food -= needs["food need"]
+					print(food)
+					feed = needs["food need"]
+					#see if there is any additional food to give
+					if additional_food > 0:
+						#remove some additional food for this animal
+						additional_food -= 1
+						#add this to the foot to be given to the animal
+						feed += 1
+					#grow the animal
+					animal.grow(feed,water)
 
 def display_crops(crop_list):
 	print()
@@ -101,13 +135,12 @@ def remove_animal_from_field(new_field):
 def main():
 	#testing
 	new_field = Field(2,5)
-	new_field.plant_crop(Wheat())
-	new_field.plant_crop(Potato())
-	new_field.add_animal(Sheep("Shaun"))
-	report = new_field.report_contents()
-	print(report["crops"])
-	report = new_field.report_field_needs()
-	print(report)
+	new_field.add_animal(Cow("Bob"))
+	new_field.add_animal(Sheep("Sally"))
+	print(new_field.report_contents())
+	print(new_field.report_needs())
+	new_field.grow(0,10,4)
+	print(new_field.report_contents())
 
 if __name__ == '__main__':
 	main()

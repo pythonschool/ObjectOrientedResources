@@ -12,9 +12,9 @@ class Sheep(Animal):
 
 	#override the grow method from the parent class
 	def grow(self,food,water):
-		if food > self._food_need and water > self._water_need:
+		if food > self._food_need:
 			self._weight += self._growth_rate * 1.2
-		elif food == self._food_need and water == self._water_need:
+		elif food == self._food_need and water >= self._water_need:
 			self._weight += self._growth_rate
 		#increment days growing
 		self._days_growing += 1
