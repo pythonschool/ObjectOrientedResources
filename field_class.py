@@ -283,15 +283,15 @@ def manage_field(self):
         print()
         if option == 1:
             plant_crop_in_field(self)
-        if option == 2:
+        elif option == 2:
             removed_crop = harvest_crop_from_field(self)
             print("You removed the crop: {0}".format(removed_crop))
-        if option == 3:
+        elif option == 3:
             add_animal_to_field(self)
-        if option == 4:
+        elif option == 4:
             removed_animal = remove_animal_from_field(self)
             print("You removed the animal: {0}".format(removed_animal))
-        if option == 5:
+        elif option == 5:
             manual_grow(self)
             print()
         elif option == 6:
