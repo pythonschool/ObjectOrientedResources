@@ -105,7 +105,7 @@ def get_menu_choice():
 def manage_crop(self):
     print('This is crop management program')
     print()
-    exit = Falst
+    exit = False
     while not exit:
         display_menu()
         option = get_menu_choice()
